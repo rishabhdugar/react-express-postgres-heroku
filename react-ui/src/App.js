@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
+import FacebookLogin from 'react-facebook-login';
+
 
 class App extends Component {
   state = {
@@ -34,6 +36,9 @@ class App extends Component {
   }
   render() {
     const { hello, postgres, error } = this.state
+    const responseFacebook = (response) => {
+  console.log(response);
+}
 
     return (
       <div className="App">
@@ -41,7 +46,11 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Facebook Lead Management</h1>
         </header>
-
+<FacebookLogin
+    appId="481509582240559"
+    autoLoad={true}
+    fields="name,email,picture"
+    callback={responseFacebook} />
         <p className="App-intro">{hello}</p>
         <p className="App-intro">{postgres}</p>
         <p className="App-intro">{error}</p>
